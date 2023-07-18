@@ -1,0 +1,18 @@
+.ls-button {
+    display: inline-block;
+    padding: 15px 35px;
+    background-color: #3498db;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 18px;
+}
+
+.ls-button:hover {
+    background-color: #2980b9;
+}
+
+.ls-button:active {
+    background-color: #1f618d;
+}
