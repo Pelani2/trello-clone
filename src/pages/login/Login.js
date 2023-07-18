@@ -1,5 +1,7 @@
 import React from "react";
 import "./LoginStyles.css";
+import FormSubmitButton from "../../components/buttons/form-submit-button/FormSubmitButton";
+import { type } from "@testing-library/user-event/dist/type";
 
 export default function Login() {
     return(
@@ -10,16 +12,16 @@ export default function Login() {
             <form className="login-form">
                 <div className="login-form__group">
                     <label 
-                        htmlFor="username"
+                        htmlFor="email"
                         className="login-form__label"
                     >
-                        Username:
+                        Email:
                     </label>
                     <input 
                         className="login-form__input"
                         type="text"
-                        id="username"
-                        name="username"
+                        id="email"
+                        name="email"
                     />
                 </div>
                 <div className="login-form__group">
@@ -36,6 +38,10 @@ export default function Login() {
                         name="password"
                     />
                 </div>
+                <FormSubmitButton 
+                    text="Submit"
+                    buttonType="submit"
+                />
             </form>
         </div>
     )
