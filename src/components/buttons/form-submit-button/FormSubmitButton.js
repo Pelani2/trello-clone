@@ -7,6 +7,7 @@ export default function FormSubmitButton({
     return(
         <button 
             type={buttonType}
+            className="form-submit-button"
         >
             {text}
         </button>

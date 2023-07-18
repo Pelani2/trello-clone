@@ -1,7 +1,6 @@
 import React from "react";
 import "./LoginStyles.css";
 import FormSubmitButton from "../../components/buttons/form-submit-button/FormSubmitButton";
-import { type } from "@testing-library/user-event/dist/type";
 
 export default function Login() {
     return(
