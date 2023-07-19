@@ -1,0 +1,33 @@
+@media screen and (max-width: 480px) {
+    .signup__title {
+        font-size: 24px;
+    }
+
+    .signup__free-trial {
+        font-size: 14px;
+    }
+
+    .signup-form__label {
+        font-size: 14px;
+    }
+
+    .signup-form__input {
+        font-size: 14px;
+    }
+
+    .password-validation {
+        font-size: 10px;
+    }
+
+    .signup__submit-button {
+        font-size: 14px;
+    }
+
+    .signup__google-button {
+        font-size: 14px;
+    }
+
+    .signup__login-box {
+        font-size: 12px;
+    }
+}
