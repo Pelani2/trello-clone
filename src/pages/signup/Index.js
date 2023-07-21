@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import "./SignupPageStyles.css";
+import { Link } from "react-router-dom";
+import CheckmarkComp from "../../components/checkmark-comp/CheckmarkComp";
+import LogoComp from "../../components/logo/LogoComp";
+import InputComp from "../../components/input/InputComp";
+import SubmitComp from "../../components/buttons/submit/SubmitComp";
 import GreenCheckmark from "../../assets/icons/green-checkmark.png";
 import Logo from "../../assets/icons/logo.png";
-import { Link } from "react-router-dom";
 import GoogleLogo from "../../assets/icons/google-logo.png";
-import "./TabletResponsiveness.css";
-import "./MobileResponsiveness.css";
+import "./index-styles-reconf.scss";
+import "./mobile-responsiveness.scss";
+import "./tablet-responsiveness.scss";
 
 export default function SignupPage() {
     const [name, setName] = useState("");
@@ -55,10 +59,10 @@ export default function SignupPage() {
     return(
         <div className="signup__container">
             <div className="signup__title-and-logo">
-                <img 
+                <LogoComp 
                     alt="logo"
                     src={Logo}
-                    className="signup__logo"
+                    classNameProp="signup__logo"
                 />
                 <h1 className="signup__title">
                     Create account
@@ -75,46 +79,46 @@ export default function SignupPage() {
                     <label className="signup-form__label">
                         Name* 
                     </label>
-                    <input 
-                        type="text"
-                        value={name}
-                        onChange={handleNameChange}
-                        required
-                        className="signup-form__input"
+                    <InputComp 
+                        typeProp="text"
+                        valueProp={name}
+                        onChangeProp={handleNameChange}
+                        requiredProp
+                        classNameProp="signup-form__input"
                     />
                 </div>
                 <div className="signup-form__group">
                     <label className="signup-form__label">
                         Email*
                     </label>
-                    <input 
-                        type="email"
-                        value={email}
-                        onChange={handleEmailChange}
-                        required
-                        className="signup-form__input"
+                    <InputComp 
+                        typeProp="email"
+                        valueProp={email}
+                        onChangeProp={handleEmailChange}
+                        requiredProp
+                        classNameProp="signup-form__input"
                     />
                 </div>
                 <div className="signup-form__group">
                     <label className="signup-form__label">
                         Password*
                     </label>
-                    <input 
-                        type="password"
-                        value={password}
-                        onChange={handlePasswordChange}
-                        required
-                        className="signup-form__input"
+                    <InputComp 
+                        typeProp="password"
+                        valueProp={password}
+                        onChangeProp={handlePasswordChange}
+                        requiredProp
+                        classNameProp="signup-form__input"
                     />
                     {password && (
                         <p className={`password-validation ${isPasswordValid ? "valid" : "error"}`}> 
                             {isPasswordValid ? (
                                 <React.Fragment>
                                     Password must be 8 characters long.
-                                    <img 
-                                        src={GreenCheckmark}
-                                        alt="checkmark"
-                                        className="password-validation__checkmark"
+                                    <CheckmarkComp 
+                                        srcProp={GreenCheckmark}
+                                        altProp="checkmark"
+                                        classNameProp="password-validation__checkmark"
                                     />
                                 </React.Fragment>
                             ) : (
@@ -127,10 +131,10 @@ export default function SignupPage() {
                             {hasSpecialCharacter ? (
                                 <React.Fragment>
                                     Password must contain at least one special character.
-                                    <img 
-                                        src={GreenCheckmark}
-                                        alt="checkmark"
-                                        className="password-validation__checkmark"
+                                    <CheckmarkComp 
+                                        srcProp={GreenCheckmark}
+                                        altProp="checkmark"
+                                        classNameProp="password-validation__checkmark"
                                     />
                                 </React.Fragment>
                             ) : (
@@ -139,20 +143,19 @@ export default function SignupPage() {
                         </p>
                     )}
                 </div>
-                <button 
-                    type="submit"
-                    className="signup__submit-button"
-                >
-                    Get started
-                </button>
+                <SubmitComp 
+                    typeProp="submit"
+                    classNameProp="signup__submit-button"
+                    textProp="Get started"
+                />
                 <Link
                     className="signup__google-button"
                     to="https://www.google.com/"
                 >
-                    <img 
-                        className="google-button__logo"
-                        alt="googlebutton"
-                        src={GoogleLogo}
+                    <LogoComp 
+                        classNameProp="google-button__logo"
+                        altProp="googlebutton"
+                        srcProp={GoogleLogo}
                     />
                     Sign up with Google
                 </Link>

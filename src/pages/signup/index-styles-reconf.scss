@@ -1,0 +1,161 @@
+$primaryColor: #7B61FF;
+$secondaryColor: #A393FF;
+$backgroundColor: #f0f0f0;
+$fromBackgroundColor: #fff;
+$borderColor: #ccc;
+$inputBorderColor: #ccc;
+$validColor: green;
+$errorColor: red;
+$boxShadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+$fontSize: 16px;
+$fontWeightBold: bold;
+
+@mixin hover-effects {
+    transition: background-color 0.3s ease;
+}
+
+.signup__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: $backgroundColor;
+
+    .signup__title-and-logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .signup__logo {
+        width: 50px;
+        height: auto;
+    }
+
+    .signup__title {
+        font-size: 28px;
+        margin: 10px 0;
+    }
+
+    .signup__free-trial {
+        font-size: $fontSize;
+        color: #888;
+    }
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: $fromBackgroundColor;
+    border-radius: 10px;
+    box-shadow: $boxShadow;
+
+    &__group {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    &__label {
+        font-size: $fontSize;
+        font-weight: $fontWeightBold;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 1px solid $inputBorderColor;
+        border-radius: 5px;
+        font-size: $fontSize;
+    }
+
+    .password-validation {
+        font-size: 11px;
+        color: #888;
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+
+        &__checkmark {
+            margin-left: 10px;
+            width: 16px;
+            height: 16px;
+        }
+
+        &.valid {
+            color: $validColor;
+        }
+
+        &.error {
+            color: $errorColor;
+        }
+    }
+
+    .signup__submit-button {
+        width: 100%;
+        padding: 10px 20px;
+        background-color: $primaryColor;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: $fontSize;
+        cursor: pointer;
+        @include hover-effects;
+        margin-top: 20px;
+
+        &:hover {
+            background-color: $secondaryColor;
+        }
+    }
+}
+
+.signup__google-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 1px solid $borderColor;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: $fontSize;
+    cursor: pointer;
+    @include hover-effects();
+    gap: 10px;
+    width: 100%;
+    margin-top: 15px;
+    font-weight: $fontWeightBold;
+
+    &:hover {
+        background-color: $secondaryColor;
+    }
+
+    .google-button__logo {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.signup__login-box {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+
+    .signup__login-button {
+        display: inline-block;
+        margin-left: 5px;
+        padding: 5px 10px;
+        background-color: $primaryColor;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        @include hover-effects();
+
+        &:hover {
+            background-color: $secondaryColor;
+        }
+    }
+}
