@@ -15,7 +15,7 @@ const LogoComp = ({
 };
 
 LogoComp.propTypes = {
-    altProp: PropTypes.string.isRequired,
+    altProp: PropTypes.string,
     srcProp: PropTypes.string,
     classNameProp: PropTypes.string
 }

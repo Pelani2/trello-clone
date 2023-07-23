@@ -16,8 +16,8 @@ const SubmitComp = ({
 
 SubmitComp.propTypes = {
     classNameProp: PropTypes.string,
-    typeProp: PropTypes.string.isRequired,
-    textProp: PropTypes.string
+    typeProp: PropTypes.string,
+    textProp: PropTypes.string,
 };
 
 export default SubmitComp;

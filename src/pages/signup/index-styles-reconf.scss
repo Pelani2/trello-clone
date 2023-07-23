@@ -1,161 +1,122 @@
-$primaryColor: #7B61FF;
-$secondaryColor: #A393FF;
+$primaryColor: #7F56D9;
+$secondaryColor: #475467;
 $backgroundColor: #f0f0f0;
-$fromBackgroundColor: #fff;
-$borderColor: #ccc;
-$inputBorderColor: #ccc;
-$validColor: green;
-$errorColor: red;
-$boxShadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-$fontSize: 16px;
-$fontWeightBold: bold;
-
-@mixin hover-effects {
-    transition: background-color 0.3s ease;
-}
 
 .signup__container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    height: 100vh;
+    align-items: center;
+    min-height: 100vh;
     background-color: $backgroundColor;
 
     .signup__title-and-logo {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .signup__logo {
-        width: 50px;
-        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
     }
 
     .signup__title {
-        font-size: 28px;
-        margin: 10px 0;
+        font-size: 24px;
+        font-weight: bold;
+        color: $primaryColor;
+        margin-bottom: 10px;
     }
 
     .signup__free-trial {
-        font-size: $fontSize;
-        color: #888;
+        font-size: 14px;
+        color: $secondaryColor;
     }
+}
+
+.signup__logo {
+    width: 50px;
+    height: auto;
+    margin-bottom: 20px;
 }
 
 .signup-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    max-width: 400px;
+    width: 350px;
     padding: 20px;
-    background-color: $fromBackgroundColor;
-    border-radius: 10px;
-    box-shadow: $boxShadow;
+    border-radius: 5px;
+    background-color: #fff;
 
-    &__group {
+    .signup-form__group {
         width: 100%;
-        margin-bottom: 20px;
-    }
-
-    &__label {
-        font-size: $fontSize;
-        font-weight: $fontWeightBold;
-    }
-
-    &__input {
-        width: 100%;
-        padding: 10px;
-        border-radius: 1px solid $inputBorderColor;
-        border-radius: 5px;
-        font-size: $fontSize;
-    }
-
-    .password-validation {
-        font-size: 11px;
-        color: #888;
         display: flex;
-        align-items: center;
-        margin-top: 10px;
+        flex-direction: column;
+        margin-bottom: 20px;
 
-        &__checkmark {
-            margin-left: 10px;
-            width: 16px;
-            height: 16px;
+        .signup-form__label {
+            font-size: 16px;
+            color: $primaryColor;
+            margin-bottom: 10px;
         }
 
-        &.valid {
-            color: $validColor;
+        .signup-form__input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+
         }
 
-        &.error {
-            color: $errorColor;
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
         }
+        
     }
 
     .signup__submit-button {
-        width: 100%;
-        padding: 10px 20px;
+        margin-top: 20px;
         background-color: $primaryColor;
         color: #fff;
+        padding: 10px 20px;
         border: none;
         border-radius: 5px;
-        font-size: $fontSize;
+        font-size: 16px;
         cursor: pointer;
-        @include hover-effects;
-        margin-top: 20px;
-
-        &:hover {
-            background-color: $secondaryColor;
-        }
+        width: 100%;
     }
 }
-
 .signup__google-button {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 20px;
-    border: 1px solid $borderColor;
     text-decoration: none;
+    color: black;
     border-radius: 5px;
-    font-size: $fontSize;
-    cursor: pointer;
-    @include hover-effects();
-    gap: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 20px;
     width: 100%;
-    margin-top: 15px;
-    font-weight: $fontWeightBold;
-
-    &:hover {
-        background-color: $secondaryColor;
-    }
+    border: 1px solid #ccc;
 
     .google-button__logo {
         width: 20px;
         height: 20px;
+        margin-right: 10px;
     }
 }
 
 .signup__login-box {
-    margin-top: 20px;
     font-size: 14px;
-    color: #666;
-    text-align: center;
+    margin-top: 20px;
 
     .signup__login-button {
-        display: inline-block;
-        margin-left: 5px;
-        padding: 5px 10px;
-        background-color: $primaryColor;
-        color: #fff;
         text-decoration: none;
-        border-radius: 5px;
-        @include hover-effects();
+        color: $primaryColor;
+        margin-left: 5px;
+        font-weight: bold;
+    }
 
-        &:hover {
-            background-color: $secondaryColor;
-        }
+    .signup__login-button:hover {
+        text-decoration: none;
     }
 }

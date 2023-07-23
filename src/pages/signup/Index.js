@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import CheckmarkComp from "../../components/checkmark-comp/CheckmarkComp";
+import { useForm, Controller, useWatch } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import LabelComp from "../../components/label/LabelComp";
+import Typography from "../../components/typography/Typography";
 import LogoComp from "../../components/logo/LogoComp";
 import InputComp from "../../components/input/InputComp";
 import SubmitComp from "../../components/buttons/submit/SubmitComp";
-import GreenCheckmark from "../../assets/icons/green-checkmark.png";
 import Logo from "../../assets/icons/logo.png";
 import GoogleLogo from "../../assets/icons/google-logo.png";
 import "./index-styles-reconf.scss";
@@ -12,49 +15,43 @@ import "./mobile-responsiveness.scss";
 import "./tablet-responsiveness.scss";
 
 export default function SignupPage() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [isPasswordValid, setIsPasswordValid] = useState(false);
-    const [hasSpecialCharacter, setHasSpecialCharacter] = useState(false);
 
-    const handleNameChange = (e) => {
-        setName(e.target.value);
+    const validationSchema = yup.object().shape({
+        name: yup.string().required("Name is required"),
+        email: yup.string().email("Invalid email").required("Email is required"),
+        password: yup
+        .string()
+        .min(8, "Password must be at least 8 characters long")
+        .test(
+            "specialCharacters",
+            "Password must contain at least one special character",
+            (value) => {
+                return /^(?=.*[!@#$%^&*])(?=.*[a-zA-Z])(?=.*\d).*$/.test(value);
+            }
+        )
+        .required("Password is required"),
+    });
+
+    const {
+        handleSubmit, 
+        control, 
+        setValue, 
+        formState: {errors},
+    } = useForm({
+        resolver: yupResolver(validationSchema)
+    });
+
+    const passwordValue = useWatch({
+        control,
+        name: "password",
+        defaultValue: ""
+    });
+
+    const onSubmit = () => {
+        setValue("name", "");
+        setValue("email", "");
+        setValue("password", "");
     };
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const checkPasswordLength = (passwordValue) => {
-        setIsPasswordValid(passwordValue.length >= 8);
-    };
-
-    const checkPasswordSpecialCharacter = (passwordValue) => {
-        const regex = /[!@#$%^&*]/;
-        setHasSpecialCharacter(regex.test(passwordValue));
-    };
-
-    const handlePasswordChange = (e) => {
-        const newPassword = e.target.value;
-        setPassword(newPassword);
-        checkPasswordLength(newPassword);
-        checkPasswordSpecialCharacter(newPassword);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        console.log(`Name: ${name}`)
-        console.log(`Email: ${email}`);
-        console.log(`Password: ${password}`);
-
-        setName("");
-        setEmail("");
-        setPassword("");
-        setIsPasswordValid(false);
-        setHasSpecialCharacter(false);
-    }
 
     return(
         <div className="signup__container">
@@ -64,82 +61,90 @@ export default function SignupPage() {
                     src={Logo}
                     classNameProp="signup__logo"
                 />
-                <h1 className="signup__title">
-                    Create account
-                </h1>
-                <h2 className="signup__free-trial">
-                    Start your 30-day free trial.
-                </h2>
+                <Typography 
+                    classNameProp="signup__title"
+                    textProp="Create account"
+                />
+                <Typography 
+                    classNameProp="signup__free-trial"
+                    textProp="Start your 30-day free trial."
+                />
             </div>
             <form 
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmit(onSubmit)}
                 className="signup-form"
             >
                 <div className="signup-form__group">
-                    <label className="signup-form__label">
-                        Name* 
-                    </label>
-                    <InputComp 
-                        typeProp="text"
-                        valueProp={name}
-                        onChangeProp={handleNameChange}
-                        requiredProp
-                        classNameProp="signup-form__input"
+                    <LabelComp 
+                        classNameProp="signup-form__label"
+                        textProp="Name*"
                     />
+                    <Controller 
+                        name="name"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                            <InputComp 
+                                typeProp="text"
+                                valueProp={field.value}
+                                onChangeProp={field.onChange}
+                                classNameProp="signup-form__input"
+                            />
+                        )}
+                    />
+                    {errors.name && <p className="error-message">
+                            {errors.name.message}
+                        </p>}
                 </div>
                 <div className="signup-form__group">
-                    <label className="signup-form__label">
-                        Email*
-                    </label>
-                    <InputComp 
-                        typeProp="email"
-                        valueProp={email}
-                        onChangeProp={handleEmailChange}
-                        requiredProp
-                        classNameProp="signup-form__input"
+                    <LabelComp 
+                        classNameProp="signup-form__label"
+                        textProp="Email*"
                     />
+                    <Controller 
+                        name="email"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                            <InputComp 
+                                typeProp="email"
+                                valueProp={field.value}
+                                onChangeProp={field.onChange}
+                                classNameProp="signup-form__input"
+                            />
+                        )}
+                    />
+                    {errors.email && <p className="error-message">
+                            {errors.email.message}
+                        </p>}
                 </div>
                 <div className="signup-form__group">
-                    <label className="signup-form__label">
-                        Password*
-                    </label>
-                    <InputComp 
-                        typeProp="password"
-                        valueProp={password}
-                        onChangeProp={handlePasswordChange}
-                        requiredProp
-                        classNameProp="signup-form__input"
+                    <LabelComp 
+                        classNameProp="signup-form__label"
+                        textProp="Password*"
                     />
-                    {password && (
-                        <p className={`password-validation ${isPasswordValid ? "valid" : "error"}`}> 
-                            {isPasswordValid ? (
-                                <React.Fragment>
-                                    Password must be 8 characters long.
-                                    <CheckmarkComp 
-                                        srcProp={GreenCheckmark}
-                                        altProp="checkmark"
-                                        classNameProp="password-validation__checkmark"
-                                    />
-                                </React.Fragment>
-                            ) : (
-                                "Password must be 8 characters long."
-                            )}
+                    <Controller 
+                        name="password"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                            <InputComp 
+                                typeProp="password"
+                                valueProp={field.value}
+                                onChangeProp={field.onChange}
+                                requiredProp
+                                classNameProp="signup-form__input"
+                            />
+                        )}
+                    />
+                    {!errors.password && passwordValue.length > 0 && passwordValue.length < 8 && (
+                        <p className="error-message">
+                            Password must be at least 8 characters long.
                         </p>
                     )}
-                    {password && (
-                        <p className={`password-validation ${hasSpecialCharacter ? "valid" : "error"}`}>
-                            {hasSpecialCharacter ? (
-                                <React.Fragment>
-                                    Password must contain at least one special character.
-                                    <CheckmarkComp 
-                                        srcProp={GreenCheckmark}
-                                        altProp="checkmark"
-                                        classNameProp="password-validation__checkmark"
-                                    />
-                                </React.Fragment>
-                            ) : (
-                                "Password must contain at least one special character."
-                            )}
+                    {!errors.password && passwordValue.length >= 8 && !/(?=.*[!@#$%^&*])/.test(passwordValue) && (
+                        <p className={`error-message`}>
+                            Password must contain at least one special character.
                         </p>
                     )}
                 </div>
