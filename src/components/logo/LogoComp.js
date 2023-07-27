@@ -2,22 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import Logo from "../../assets/icons/logo.png";
 
-const LogoComp = ({ 
-    altProp, srcProp, classNameProp 
-}) => {
-    return(
-        <img 
-            alt={altProp}
-            src={srcProp}
-            className={classNameProp}
-        />
-    );
-};
+const LogoComp = ({ alt, src, className }) => (
+    <img 
+        alt={alt}
+        src={src}
+        className={className}
+    />  
+);
 
 LogoComp.propTypes = {
-    altProp: PropTypes.string,
-    srcProp: PropTypes.string,
-    classNameProp: PropTypes.string
+    alt: PropTypes.string,
+    src: PropTypes.string,
+    className: PropTypes.string
 }
 
 LogoComp.defaultProps = {

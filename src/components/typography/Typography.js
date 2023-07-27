@@ -1,19 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Typography = ({
-    classNameProp, textProp
-}) => {
-    return(
-        <p className={classNameProp}>
-            {textProp}
-        </p>
-    );
-}
+const Typography = ({ className, text }) => (
+    <p className={className}>
+        {text}
+    </p>  
+);
 
 Typography.propTypes = {
-    classNameProp: PropTypes.string,
-    textProp: PropTypes.string
+    className: PropTypes.string,
+    text: PropTypes.string
 };
 
 export default Typography;

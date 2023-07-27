@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import LabelComp from "../../components/label/LabelComp";
+import Label from "../../components/label/Label";
 import Typography from "../../components/typography/Typography";
 import LogoComp from "../../components/logo/LogoComp";
-import InputComp from "../../components/input/InputComp";
-import SubmitComp from "../../components/buttons/submit/SubmitComp";
+import Input from "../../components/input/Input";
+import Button from "../../components/button/Button";
 import Logo from "../../assets/icons/logo.png";
 import GoogleLogo from "../../assets/icons/google-logo.png";
-import "./index-styles-reconf.scss";
-import "./mobile-responsiveness.scss";
-import "./tablet-responsiveness.scss";
+import "./signup-styles.scss";
+import "./signup-mobile-styles.scss"
+import "./signup-tablet-styles.scss";
 
 export default function SignupPage() {
 
@@ -59,15 +59,15 @@ export default function SignupPage() {
                 <LogoComp 
                     alt="logo"
                     src={Logo}
-                    classNameProp="signup__logo"
+                    className="signup__logo"
                 />
                 <Typography 
-                    classNameProp="signup__title"
-                    textProp="Create account"
+                    className="signup__title"
+                    text="Create account"
                 />
                 <Typography 
-                    classNameProp="signup__free-trial"
-                    textProp="Start your 30-day free trial."
+                    className="signup__free-trial"
+                    text="Start your 30-day free trial."
                 />
             </div>
             <form 
@@ -75,20 +75,20 @@ export default function SignupPage() {
                 className="signup-form"
             >
                 <div className="signup-form__group">
-                    <LabelComp 
-                        classNameProp="signup-form__label"
-                        textProp="Name*"
+                    <Label 
+                        className="signup-form__label"
+                        text="Name*"
                     />
                     <Controller 
                         name="name"
                         control={control}
                         defaultValue=""
                         render={({ field }) => (
-                            <InputComp 
-                                typeProp="text"
-                                valueProp={field.value}
-                                onChangeProp={field.onChange}
-                                classNameProp="signup-form__input"
+                            <Input 
+                                type="text"
+                                value={field.value}
+                                onChange={field.onChange}
+                                className="signup-form__input"
                             />
                         )}
                     />
@@ -97,20 +97,20 @@ export default function SignupPage() {
                         </p>}
                 </div>
                 <div className="signup-form__group">
-                    <LabelComp 
-                        classNameProp="signup-form__label"
-                        textProp="Email*"
+                    <Label 
+                        className="signup-form__label"
+                        text="Email*"
                     />
                     <Controller 
                         name="email"
                         control={control}
                         defaultValue=""
                         render={({ field }) => (
-                            <InputComp 
-                                typeProp="email"
-                                valueProp={field.value}
-                                onChangeProp={field.onChange}
-                                classNameProp="signup-form__input"
+                            <Input 
+                                type="email"
+                                value={field.value}
+                                onChange={field.onChange}
+                                className="signup-form__input"
                             />
                         )}
                     />
@@ -119,21 +119,21 @@ export default function SignupPage() {
                         </p>}
                 </div>
                 <div className="signup-form__group">
-                    <LabelComp 
-                        classNameProp="signup-form__label"
-                        textProp="Password*"
+                    <Label 
+                        className="signup-form__label"
+                        text="Password*"
                     />
                     <Controller 
                         name="password"
                         control={control}
                         defaultValue=""
                         render={({ field }) => (
-                            <InputComp 
-                                typeProp="password"
-                                valueProp={field.value}
-                                onChangeProp={field.onChange}
-                                requiredProp
-                                classNameProp="signup-form__input"
+                            <Input 
+                                type="password"
+                                value={field.value}
+                                onChange={field.onChange}
+                                required
+                                className="signup-form__input"
                             />
                         )}
                     />
@@ -148,19 +148,19 @@ export default function SignupPage() {
                         </p>
                     )}
                 </div>
-                <SubmitComp 
-                    typeProp="submit"
-                    classNameProp="signup__submit-button"
-                    textProp="Get started"
+                <Button 
+                    type="submit"
+                    className="signup__submit-button"
+                    text="Get started"
                 />
                 <Link
                     className="signup__google-button"
                     to="https://www.google.com/"
                 >
                     <LogoComp 
-                        classNameProp="google-button__logo"
-                        altProp="googlebutton"
-                        srcProp={GoogleLogo}
+                        className="google-button__logo"
+                        alt="googlebutton"
+                        src={GoogleLogo}
                     />
                     Sign up with Google
                 </Link>
