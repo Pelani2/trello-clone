@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Typography = ({ className, text }) => (
+const Typography = ({ className, children }) => (
     <p className={className}>
-        {text}
+        {children}
     </p>  
 );
 
 Typography.propTypes = {
     className: PropTypes.string,
-    text: PropTypes.string
+    children: PropTypes.string
 };
 
 export default Typography;

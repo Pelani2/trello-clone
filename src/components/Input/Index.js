@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./input-styles.scss";
 
-const Input = ({ type, value, onChange, required, className }) => (
+const Input = ({ type, value, onChange, required }) => (
         <input 
             type={type}
             value={value}
             onChange={onChange}
             required={required}
-            className={className}
+            className="signup-form__input signup__mobile-font14px"
         />
 );
 
@@ -16,7 +17,6 @@ Input.propTypes =  {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     required: PropTypes.bool,
-    className: PropTypes.string,
 }
 
 export default Input;

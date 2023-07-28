@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useForm, Controller, useWatch } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Label from "../../components/label/Label";
-import Typography from "../../components/typography/Typography";
-import LogoComp from "../../components/logo/LogoComp";
-import Input from "../../components/input/Input";
-import Button from "../../components/button/Button";
-import Logo from "../../assets/icons/logo.png";
+import Label from "../../components/Label/Index";
+import Typography from "../../components/Typography/Index";
+import Logo from "../../components/Logo/Index";
+import Input from "../../components/Input/Index";
+import Button from "../../components/Button/Index";
+import LogoIcon from "../../assets/icons/logo.png";
 import GoogleLogo from "../../assets/icons/google-logo.png";
 import "./signup-styles.scss";
 import "./signup-mobile-styles.scss"
@@ -21,15 +21,21 @@ export default function SignupPage() {
         email: yup.string().email("Invalid email").required("Email is required"),
         password: yup
         .string()
-        .min(8, "Password must be at least 8 characters long")
         .test(
-            "specialCharacters",
-            "Password must contain at least one special character",
+            "passwordLength",
+            "Password must be at least 8 characters long",
             (value) => {
-                return /^(?=.*[!@#$%^&*])(?=.*[a-zA-Z])(?=.*\d).*$/.test(value);
+                return value.length >= 8;
             }
         )
-        .required("Password is required"),
+        .test(
+            "specialCharacter",
+            "Password must contain at least one special character",
+            (value) => {
+                return /^(?=.*[!@#$%^&*])(?=.*[a-zA-Z])(?=.*\d).*$/g.test(value);
+            }
+        )
+        .required("Password is required."),
     });
 
     const {
@@ -41,12 +47,6 @@ export default function SignupPage() {
         resolver: yupResolver(validationSchema)
     });
 
-    const passwordValue = useWatch({
-        control,
-        name: "password",
-        defaultValue: ""
-    });
-
     const onSubmit = () => {
         setValue("name", "");
         setValue("email", "");
@@ -56,29 +56,35 @@ export default function SignupPage() {
     return(
         <div className="signup__container">
             <div className="signup__title-and-logo">
-                <LogoComp 
+                <Logo 
                     alt="logo"
-                    src={Logo}
-                    className="signup__logo"
+                    src={LogoIcon}
                 />
                 <Typography 
-                    className="signup__title"
-                    text="Create account"
-                />
+                    className="
+                        signup__title
+                        signup__mobile-font24px
+                    "
+                >
+                    Create Account
+                </Typography>
                 <Typography 
-                    className="signup__free-trial"
-                    text="Start your 30-day free trial."
-                />
+                    className="
+                        signup__free-trial
+                        signup__mobile-font14px
+                    "
+                >
+                    Start your 30-day free trial.
+                </Typography>
             </div>
             <form 
                 onSubmit={handleSubmit(onSubmit)}
                 className="signup-form"
             >
                 <div className="signup-form__group">
-                    <Label 
-                        className="signup-form__label"
-                        text="Name*"
-                    />
+                    <Label className="signup-form__label">
+                        Name*
+                    </Label>
                     <Controller 
                         name="name"
                         control={control}
@@ -88,19 +94,17 @@ export default function SignupPage() {
                                 type="text"
                                 value={field.value}
                                 onChange={field.onChange}
-                                className="signup-form__input"
                             />
                         )}
                     />
-                    {errors.name && <p className="error-message">
+                    {errors.name && <Typography className="error-message">
                             {errors.name.message}
-                        </p>}
+                        </Typography>}
                 </div>
                 <div className="signup-form__group">
-                    <Label 
-                        className="signup-form__label"
-                        text="Email*"
-                    />
+                    <Label className="signup-form__label">
+                        Email*
+                    </Label>
                     <Controller 
                         name="email"
                         control={control}
@@ -110,61 +114,65 @@ export default function SignupPage() {
                                 type="email"
                                 value={field.value}
                                 onChange={field.onChange}
-                                className="signup-form__input"
                             />
                         )}
                     />
-                    {errors.email && <p className="error-message">
+                    {errors.email && <Typography className="error-message">
                             {errors.email.message}
-                        </p>}
+                        </Typography>}
                 </div>
                 <div className="signup-form__group">
-                    <Label 
-                        className="signup-form__label"
-                        text="Password*"
-                    />
+                    <Label className="signup-form__label">
+                        Password*
+                    </Label>
                     <Controller 
                         name="password"
                         control={control}
                         defaultValue=""
                         render={({ field }) => (
-                            <Input 
-                                type="password"
-                                value={field.value}
-                                onChange={field.onChange}
-                                required
-                                className="signup-form__input"
-                            />
+                            <React.Fragment>
+                                <Input 
+                                    type="password"
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    required
+                                />
+
+                                {errors.password?.type === "passwordLength" && (
+                                    <Typography className="error-message">
+                                        {errors.password.message}
+                                    </Typography>
+                                )}
+
+                                {errors.password?.type === "specialCharacter" && (
+                                    <Typography className="error-message">
+                                        {errors.password.message}
+                                    </Typography>
+                                )}
+                            </React.Fragment>
                         )}
                     />
-                    {!errors.password && passwordValue.length > 0 && passwordValue.length < 8 && (
-                        <p className="error-message">
-                            Password must be at least 8 characters long.
-                        </p>
-                    )}
-                    {!errors.password && passwordValue.length >= 8 && !/(?=.*[!@#$%^&*])/.test(passwordValue) && (
-                        <p className={`error-message`}>
-                            Password must contain at least one special character.
-                        </p>
-                    )}
                 </div>
-                <Button 
-                    type="submit"
-                    className="signup__submit-button"
-                    text="Get started"
-                />
+                <Button type="submit">
+                    Submit
+                </Button>
                 <Link
-                    className="signup__google-button"
+                    className="
+                        signup__google-button
+                        signup__mobile-font14px
+                    "
                     to="https://www.google.com/"
                 >
-                    <LogoComp 
-                        className="google-button__logo"
+                    <Logo
                         alt="googlebutton"
                         src={GoogleLogo}
                     />
                     Sign up with Google
                 </Link>
-                <p className="signup__login-box">
+                <Typography className="
+                    signup__login-box
+                    signup__mobile-font12px
+                ">
                     Already have an account?
                     <Link 
                         className="signup__login-button"
@@ -172,7 +180,7 @@ export default function SignupPage() {
                     >
                         Log in
                     </Link>
-                </p>
+                </Typography>
             </form>
         </div>
     );

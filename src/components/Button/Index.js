@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./button-styles.scss";
 
-const Button = ({ className, type, text }) => (
+const Button = ({ type, children }) => (
     <button
-        className={className}
+        className="signup__submit-button signup__mobile-font14px"
         type={type}
     >
-        {text}
+        {children}
     </button>
 );
 
 Button.propTypes = {
-    className: PropTypes.string,
     type: PropTypes.string,
-    text: PropTypes.string,
+    children: PropTypes.string,
 };
 
 export default Button;

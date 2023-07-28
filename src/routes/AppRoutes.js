@@ -1,11 +1,11 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Index from "../pages/signup/Index";
+import SignUp from "../pages/Signup/Index";
 
 const AppRoutes = createBrowserRouter([
     {
         path: "/",
-        element: <Index />
+        element: <SignUp />
     }
 ]);
 
