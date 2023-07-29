@@ -8,7 +8,7 @@ import Typography from "../../components/Typography/Index";
 import Logo from "../../components/Logo/Index";
 import Input from "../../components/Input/Index";
 import Button from "../../components/Button/Index";
-import LogoIcon from "../../assets/icons/logo.png";
+import Icon from "../../assets/icons/icon.png";
 import GoogleLogo from "../../assets/icons/google-logo.png";
 import "./signup-styles.scss";
 import "./signup-mobile-styles.scss"
@@ -58,7 +58,7 @@ export default function SignupPage() {
             <div className="signup__title-and-logo">
                 <Logo 
                     alt="logo"
-                    src={LogoIcon}
+                    src={Icon}
                 />
                 <Typography 
                     className="

@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Logo from "../../assets/icons/logo.png";
+import Icon from "../../assets/icons/icon.png";
 import "./logo-styles.scss";
 
-const ButtonLogo = ({ alt, src }) => (
+const Logo = ({ alt, src }) => (
     <img 
         alt={alt}
         src={src}
@@ -11,13 +11,13 @@ const ButtonLogo = ({ alt, src }) => (
     />  
 );
 
-ButtonLogo.propTypes = {
+Logo.propTypes = {
     alt: PropTypes.string,
     src: PropTypes.string,
 }
 
-ButtonLogo.defaultProps = {
-    srcProp: Logo
+Logo.defaultProps = {
+    srcProp: Icon
 }
 
-export default ButtonLogo;
+export default Logo;
