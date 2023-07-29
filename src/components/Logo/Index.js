@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Logo from "../../assets/icons/logo.png";
 import "./logo-styles.scss";
 
-const LogoComp = ({ alt, src }) => (
+const ButtonLogo = ({ alt, src }) => (
     <img 
         alt={alt}
         src={src}
@@ -11,13 +11,13 @@ const LogoComp = ({ alt, src }) => (
     />  
 );
 
-LogoComp.propTypes = {
+ButtonLogo.propTypes = {
     alt: PropTypes.string,
     src: PropTypes.string,
 }
 
-LogoComp.defaultProps = {
+ButtonLogo.defaultProps = {
     srcProp: Logo
 }
 
-export default LogoComp;
+export default ButtonLogo;

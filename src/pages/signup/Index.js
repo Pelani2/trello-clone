@@ -65,6 +65,7 @@ export default function SignupPage() {
                         signup__title
                         signup__mobile-font24px
                     "
+                    variant="h1"
                 >
                     Create Account
                 </Typography>
@@ -73,6 +74,7 @@ export default function SignupPage() {
                         signup__free-trial
                         signup__mobile-font14px
                     "
+                    variant="h2"
                 >
                     Start your 30-day free trial.
                 </Typography>
@@ -169,10 +171,12 @@ export default function SignupPage() {
                     />
                     Sign up with Google
                 </Link>
-                <Typography className="
-                    signup__login-box
-                    signup__mobile-font12px
-                ">
+                <Typography 
+                    className="
+                        signup__login-box
+                        signup__mobile-font12px
+                    "
+                >
                     Already have an account?
                     <Link 
                         className="signup__login-button"
