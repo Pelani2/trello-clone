@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Label from "../../components/Label/Index";
-import Typography from "../../components/Typography/Index";
-import Logo from "../../components/Logo/Index";
-import Input from "../../components/Input/Index";
-import Button from "../../components/Button/Index";
+import Label from "../../components/Label";
+import Typography from "../../components/Typography";
+import Logo from "../../components/Logo";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 import Icon from "../../assets/icons/icon.png";
 import GoogleLogo from "../../assets/icons/google-logo.png";
 import "./signup-styles.scss";
@@ -61,11 +61,8 @@ export default function SignupPage() {
                     src={Icon}
                 />
                 <Typography 
-                    className="
-                        signup__title
-                        signup__mobile-font24px
-                    "
                     variant="h1"
+                    className="signup__title"
                 >
                     Create Account
                 </Typography>
