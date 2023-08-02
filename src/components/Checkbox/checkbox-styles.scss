@@ -1,0 +1,33 @@
+@import "../../styles/colors.scss";
+@import "~font-awesome/scss/font-awesome";
+
+
+.checkbox {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    margin-right: 8px;
+    cursor: pointer;
+    position: relative;
+
+    &:checked {
+        background-color: $primaryColor;
+        border: 2px solid $primaryColor;
+    }
+
+    &:checked::before {
+        content: "\f00c";
+        font-family: FontAwesome;
+        font-size: 12px;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
