@@ -2,20 +2,15 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import SignUp from "../pages/Signup";
 import Login from "../pages/Login";
-import PasswordReset from "../pages/PasswordReset";
 
 const AppRoutes = createBrowserRouter([
     {
-        path: "/",
+        path: "/signup",
         element: <SignUp />
     },
     {
-        path: "/login",
+        path: "/",
         element: <Login />
-    },
-    {
-        path: "/forgotpassword",
-        element: <PasswordReset />
     }
 ]);
 
