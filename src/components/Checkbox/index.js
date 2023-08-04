@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from  "classnames";
 import "./checkbox-styles.scss";
 
-const Checkbox = ({ type, id, name, checked, onChange, onRememberChange }) => {
+const Checkbox = ({ type, id, name, checked, onChange}) => {
     const checkboxClass = classNames("checkbox", {
         "fa": true,
         "fa-check": checked
@@ -11,7 +11,6 @@ const Checkbox = ({ type, id, name, checked, onChange, onRememberChange }) => {
 
     const handleCheckboxChange = (event) => {
         onChange(event);
-        onRememberChange();
     }
 
     return(
@@ -32,7 +31,6 @@ Checkbox.propTypes = {
     name: PropTypes.string,
     checked: PropTypes.bool,
     onChange: PropTypes.func,
-    onRememberChange: PropTypes.func,
 }
 
 export default Checkbox;
