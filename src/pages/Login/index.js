@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useFormik } from "formik";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import GoogleLogo from "../../assets/icons/google-logo.png"
@@ -17,22 +18,20 @@ export default function Login() {
 
     useEffect(() => {
         const storedRememberMe = localStorage.getItem("rememberMe");
-        if ( storedRememberMe === "true") {
+        if (storedRememberMe === "true") {
             setRememberMe(true);
-            formik.setFieldValue("remember", true);
-
-            const storedPassword = localStorage.getItem("rememberedPassword");
-            formik.setFieldValue("password", storedPassword);
+            setValue("remember", true);
+            setValue("password", localStorage.getItem("rememberedPassword"));
         }
     }, []);
 
     const handleRememberChange = () => {
-        setRememberMe((prevRememberMe) => !prevRememberMe);
+        setRememberMe((prevRememberMe) => prevRememberMe);
         if (!rememberMe) {
-            localStorage.setItem("rememberedPassword", formik.values.password);
+            localStorage.setItem("rememberedPassword", watch("password"));
         } else {
             localStorage.setItem("rememberMe", !rememberMe);
-            formik.setFieldValue("remember", !rememberMe);
+            setValue("remember", !rememberMe);
         }
     };
 
@@ -41,24 +40,31 @@ export default function Login() {
         password: Yup.string().required("Password is required"),
     });
 
-    const formik = useFormik({
-        initialValues: {
+    const {
+        handleSubmit, 
+        control,
+        setValue, 
+        watch,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(validationSchema),
+        defaultValues: {
             email: "",
             password: "",
             remember: false,
         },
-        validationSchema,
-        onSubmit: (values) => {
-            console.log("Form submitted with values: ", values);
-        },
     });
+
+    const onSubmit = (data) => {
+        console.log("Form submitted with values: ", data);
+    };
 
     return(
         <div className="login-container">
             <div className="login__title-and-logo">
                 <Logo 
                     alt="logo"
-                    src={Icon} 
+                    src={Icon}
                 />
                 <Typography 
                     variant="h1"
@@ -70,90 +76,104 @@ export default function Login() {
                     variant="h3"
                     className="login__welcome-message"
                 >
-                    Welcome back! Please enter your details.
+                    Welcome back! Plese enter your details.
                 </Typography>
             </div>
+
             <div className="login__form">
-                <form onSubmit={formik.handleSubmit}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="login__input">
                         <Label htmlFor="email">
-                            Email:
+                            Email: 
                         </Label>
-                        <Input 
-                            type="email"
-                            id="email"
+                        <Controller 
                             name="email"
-                            value={formik.values.email}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            autoComplete="off"
+                            control={control}
+                            render={({field}) => (
+                                <Input 
+                                    type="email"
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    autoComplete="off"
+                                />
+                            )}
                         />
-                        {formik.touched.email && formik.errors.email ? (
-                            <Typography className="login__error-message">
-                                {formik.errors.email}
-                            </Typography>
-                        ) : null}
+                        {errors.email && <Typography className="login__error-message">
+                                {errors.email.message}
+                            </Typography>}
                     </div>
+
                     <div className="login__input">
-                        <Label
-                            htmlFor="password"
-                        >
-                            Password: 
+                        <Label htmlFor="password">
+                            Password:
                         </Label>
-                        <Input 
-                            type="password"
-                            id="password"
+                        <Controller 
                             name="password"
-                            value={formik.values.password}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            autoComplete="off"
+                            control={control}
+                            render={({field}) => (
+                                <Input 
+                                    type="password"
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    autoComplete="off"
+                                />
+                            )}
                         />
-                        {formik.touched.password && formik.errors.password ? (
-                            <Typography className="login__error-message">
-                                {formik.errors.password}
+                        {errors.password && (
+                            <Typography className="login__error-message"> 
+                                {errors.password.message}
                             </Typography>
-                        ) : null}
+                        )}
                     </div>
+
                     <div className="login__remember-forgot-box">
                         <div className="login__remember">
-                            <Checkbox 
-                                type="checkbox"
-                                id="remember"
+                            <Controller 
                                 name="remember"
-                                checked={formik.values.remember}
-                                onChange={formik.handleChange}
-                                onRememberChange={handleRememberChange}
+                                control={control}
+                                render={({field}) => (
+                                    <Checkbox 
+                                        type="checkbox"
+                                        id="remember"
+                                        name="remember"
+                                        checked={field.value}
+                                        onChange={(e) => {
+                                            field.onChange(e);
+                                            handleRememberChange();
+                                        }}
+                                    />
+                                )}
                             />
                             <Label htmlFor="remember">
                                 Remember for 30 days
                             </Label>
                         </div>
+
                         <Link 
                             className="login__forgot-link"
-                            to="/forgotpassword"
+                            to="/passwordreset"
                         >
+                            
                             Forgot password
                         </Link>
                     </div>
+
                     <Button type="submit">
                         Login
                     </Button>
-                    <Link
+                    <Link 
                         className="login__google-button"
-                        to="https://www.google.com/"
+                        to="https://www.google.com"
                     >
                         <Logo 
                             src={GoogleLogo}
                             alt="googleIcon"
-                            
                         />
                         Sign in with Google
                     </Link>
-                    <div 
-                        className="login__signup-box"
-                    >
-                        Dont have an account? 
+
+                    <div className="login__signup-box">
+                        Dont have an account?
                         <Link 
                             className="login__signup-button"
                             to="/signup"
