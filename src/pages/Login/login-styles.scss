@@ -87,19 +87,6 @@
         background-color: #fff;
     }
 
-    .login__form button[type="submit"] {
-        padding: 10px 20px;
-        background-color: $primaryColor;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .login__form button[type="submit"]:hover {
-        background-color: $primaryDarkColor;
-    }
-
     .login__google-button {
         display: flex;
         align-items: center;

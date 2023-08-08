@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Axios from "axios";
 import Label from "../../components/Label";
 import Typography from "../../components/Typography";
 import Logo from "../../components/Logo";
@@ -47,7 +48,14 @@ export default function SignupPage() {
         resolver: yupResolver(validationSchema)
     });
 
-    const onSubmit = () => {
+    const onSubmit = async (formData) => {
+        try {
+            const response = await Axios.post("API_ENDPOINT", formData);
+            console.log("API Response: ", response.data);
+        } catch (error) {
+            console.log("API Error: ", error);
+        }
+
         setValue("name", "");
         setValue("email", "");
         setValue("password", "");
@@ -152,7 +160,10 @@ export default function SignupPage() {
                         )}
                     />
                 </div>
-                <Button type="submit">
+                <Button 
+                    type="submit"
+                    variant="primary-button"
+                >
                     Submit
                 </Button>
                 <Link
