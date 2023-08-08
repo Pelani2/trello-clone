@@ -56,4 +56,26 @@
             text-decoration: underline;
         }
     }
+
+    // mobile responsiveness for all button styles
+    &.primary-button,
+    &.google-button,
+    &.secondary-button,
+    &.forgot-pass-button {
+
+        @media (max-width: 480px) {
+            font-size: 14px;
+        }
+    }
+
+    // tablet responsiveness for all button styles
+    &.primary-button,
+    &.google-button,
+    &.secondary-button,
+    &.forgot-pass-button {
+
+        @media (max-width: 768px) {
+            font-size: 16px;
+        }
+    }
 }

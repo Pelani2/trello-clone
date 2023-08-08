@@ -11,8 +11,6 @@ import Button from "../../components/Button";
 import Icon from "../../assets/icons/icon.png";
 import GoogleLogo from "../../assets/icons/google-logo.png";
 import "./signup-styles.scss";
-import "./signup-mobile-styles.scss"
-import "./signup-tablet-styles.scss";
 
 export default function SignupPage() {
 
@@ -61,7 +59,9 @@ export default function SignupPage() {
     };
 
     return(
-        <div className="signup__container">
+        <div className="
+            signup__container 
+        ">
             <div className="signup__title-and-logo">
                 <Logo 
                     alt="logo"
@@ -84,7 +84,10 @@ export default function SignupPage() {
             </div>
             <form 
                 onSubmit={handleSubmit(onSubmit)}
-                className="signup-form"
+                className="
+                    signup-form
+                    signup-tablet__form
+                "
             >
                 <div className="signup-form__group">
                     <Label className="signup-form__label">
