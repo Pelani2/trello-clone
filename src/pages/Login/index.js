@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
 import GoogleLogo from "../../assets/icons/google-logo.png"
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
@@ -149,13 +148,13 @@ export default function Login() {
                             </Label>
                         </div>
 
-                        <Link 
-                            className="login__forgot-link"
+                        <Button 
+                            variant="forgot-pass-button"
                             to="/passwordreset"
                         >
                             
                             Forgot password
-                        </Link>
+                        </Button>
                     </div>
 
                     <Button 
@@ -164,8 +163,8 @@ export default function Login() {
                     >
                         Login
                     </Button>
-                    <Link 
-                        className="login__google-button"
+                    <Button 
+                        variant="google-button"
                         to="https://www.google.com"
                     >
                         <Logo 
@@ -173,16 +172,16 @@ export default function Login() {
                             alt="googleIcon"
                         />
                         Sign in with Google
-                    </Link>
+                    </Button>
 
                     <div className="login__signup-box">
                         Dont have an account?
-                        <Link 
-                            className="login__signup-button"
+                        <Button 
+                            variant="secondary-button"
                             to="/signup"
                         >
                             Sign up
-                        </Link>
+                        </Button>
                     </div>
                 </form>
             </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -77,7 +76,6 @@ export default function SignupPage() {
                 <Typography 
                     className="
                         signup__free-trial
-                        signup__mobile-font14px
                     "
                     variant="h2"
                 >
@@ -166,11 +164,8 @@ export default function SignupPage() {
                 >
                     Submit
                 </Button>
-                <Link
-                    className="
-                        signup__google-button
-                        signup__mobile-font14px
-                    "
+                <Button
+                    variant="google-button"
                     to="https://www.google.com/"
                 >
                     <Logo
@@ -178,20 +173,19 @@ export default function SignupPage() {
                         src={GoogleLogo}
                     />
                     Sign up with Google
-                </Link>
+                </Button>
                 <Typography 
                     className="
                         signup__login-box
-                        signup__mobile-font12px
                     "
                 >
                     Already have an account?
-                    <Link 
-                        className="signup__login-button"
+                    <Button 
+                        variant="secondary-button"
                         to="/login"
                     >
                         Log in
-                    </Link>
+                    </Button>
                 </Typography>
             </form>
         </div>
