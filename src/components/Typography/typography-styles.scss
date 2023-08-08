@@ -1,0 +1,27 @@
+@import "../../styles/colors.scss";
+
+.Typography {
+    &.default {
+        font-size: 14px;
+        margin-top: 20px;
+    }
+
+    &.h1 {
+        font-size: 24px;
+        font-weight: bold;
+        color: $primaryColor;
+        margin-bottom: 10px;
+    }
+
+    &.h2 {
+        font-size: 14px;
+        color: $secondaryColor;
+    }
+
+    &.error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+        text-align: left;
+    }
+}

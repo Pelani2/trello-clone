@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+
 import GoogleLogo from "../../assets/icons/google-logo.png"
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
@@ -67,13 +68,13 @@ export default function Login() {
                 />
                 <Typography 
                     variant="h1"
-                    className="login__title"
+                    className="Typography h1"
                 >
                     Login to your account
                 </Typography>
                 <Typography
-                    variant="h3"
-                    className="login__welcome-message"
+                    variant="h2"
+                    className="Typography h2"
                 >
                     Welcome back! Plese enter your details.
                 </Typography>
@@ -97,7 +98,7 @@ export default function Login() {
                                 />
                             )}
                         />
-                        {errors.email && <Typography className="login__error-message">
+                        {errors.email && <Typography className="Typography error-message">
                                 {errors.email.message}
                             </Typography>}
                     </div>
@@ -119,7 +120,7 @@ export default function Login() {
                             )}
                         />
                         {errors.password && (
-                            <Typography className="login__error-message"> 
+                            <Typography className="Typography error-message"> 
                                 {errors.password.message}
                             </Typography>
                         )}

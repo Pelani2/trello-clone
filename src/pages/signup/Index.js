@@ -67,16 +67,14 @@ export default function SignupPage() {
                     alt="logo"
                     src={Icon}
                 />
-                <Typography 
+                <Typography
                     variant="h1"
-                    className="signup__title"
+                    className="Typography h1"
                 >
                     Create Account
                 </Typography>
                 <Typography 
-                    className="
-                        signup__free-trial
-                    "
+                    className="Typography h2"
                     variant="h2"
                 >
                     Start your 30-day free trial.
@@ -84,10 +82,7 @@ export default function SignupPage() {
             </div>
             <form 
                 onSubmit={handleSubmit(onSubmit)}
-                className="
-                    signup-form
-                    signup-tablet__form
-                "
+                className="signup-form"
             >
                 <div className="signup-form__group">
                     <Label className="signup-form__label">
@@ -105,7 +100,7 @@ export default function SignupPage() {
                             />
                         )}
                     />
-                    {errors.name && <Typography className="error-message">
+                    {errors.name && <Typography className="Typography error-message">
                             {errors.name.message}
                         </Typography>}
                 </div>
@@ -125,7 +120,7 @@ export default function SignupPage() {
                             />
                         )}
                     />
-                    {errors.email && <Typography className="error-message">
+                    {errors.email && <Typography className="Typography error-message">
                             {errors.email.message}
                         </Typography>}
                 </div>
@@ -147,13 +142,13 @@ export default function SignupPage() {
                                 />
 
                                 {errors.password?.type === "passwordLength" && (
-                                    <Typography className="error-message">
+                                    <Typography className="Typography error-message">
                                         {errors.password.message}
                                     </Typography>
                                 )}
 
                                 {errors.password?.type === "specialCharacter" && (
-                                    <Typography className="error-message">
+                                    <Typography className="Typography error-message">
                                         {errors.password.message}
                                     </Typography>
                                 )}
@@ -177,11 +172,7 @@ export default function SignupPage() {
                     />
                     Sign up with Google
                 </Button>
-                <Typography 
-                    className="
-                        signup__login-box
-                    "
-                >
+                <Typography className="Typography default">
                     Already have an account?
                     <Button 
                         variant="secondary-button"

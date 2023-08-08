@@ -8,18 +8,6 @@
     min-height: 100vh;
     background-color: $backgroundColor;
 
-    .login__title,
-    .login__welcome-message {
-        font-size: 24px;
-        font-weight: bold;
-        color: $primaryColor;
-        margin-bottom: 10px;
-    }
-    
-    .login__welcome-message {
-        font-size: 18px;
-        color: $secondaryColor;
-    }
 
     .login__title-and-logo > img {
         width: 48px;
@@ -35,21 +23,13 @@
     .login__input {
         display: flex;
         flex-direction: column;
-        align-items: center;
         margin-bottom: 20px;
+        gap: 3px;
     }
 
     .login__input > Label {
         text-align: left;
         width: 100%;
-    }
-
-    .login__error-message {
-        color: red;
-        font-size: 12px;
-        margin-top: 5px;
-        width: 100%;
-        text-align: left;
     }
 
     .login__remember-forgot-box {
