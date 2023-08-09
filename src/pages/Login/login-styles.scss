@@ -27,11 +27,6 @@
         gap: 3px;
     }
 
-    .login__input > Label {
-        text-align: left;
-        width: 100%;
-    }
-
     .login__remember-forgot-box {
         margin-bottom: 20px;
         display: flex;
@@ -41,11 +36,6 @@
         .login__remember {
             display: flex;
             align-items: center;
-        }
-
-        .login__remember > Label {
-            font-size: 15px;
-            font-weight: bold;
         }
     }
 

@@ -85,7 +85,7 @@ export default function SignupPage() {
                 className="signup-form"
             >
                 <div className="signup-form__group">
-                    <Label className="signup-form__label">
+                    <Label variant="primary-label">
                         Name*
                     </Label>
                     <Controller 
@@ -105,7 +105,7 @@ export default function SignupPage() {
                         </Typography>}
                 </div>
                 <div className="signup-form__group">
-                    <Label className="signup-form__label">
+                    <Label variant="primary-label">
                         Email*
                     </Label>
                     <Controller 
@@ -125,7 +125,7 @@ export default function SignupPage() {
                         </Typography>}
                 </div>
                 <div className="signup-form__group">
-                    <Label className="signup-form__label">
+                    <Label variant="primary-label">
                         Password*
                     </Label>
                     <Controller 

@@ -83,7 +83,10 @@ export default function Login() {
             <div className="login__form">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="login__input">
-                        <Label htmlFor="email">
+                        <Label 
+                            variant="primary-label"
+                            htmlFor="email"
+                        >
                             Email: 
                         </Label>
                         <Controller 
@@ -104,7 +107,10 @@ export default function Login() {
                     </div>
 
                     <div className="login__input">
-                        <Label htmlFor="password">
+                        <Label 
+                            variant="primary-label"
+                            htmlFor="password"
+                        >
                             Password:
                         </Label>
                         <Controller 
@@ -144,7 +150,10 @@ export default function Login() {
                                     />
                                 )}
                             />
-                            <Label htmlFor="remember">
+                            <Label 
+                                htmlFor="remember"
+                                variant="secondary-label"
+                            >
                                 Remember for 30 days
                             </Label>
                         </div>
