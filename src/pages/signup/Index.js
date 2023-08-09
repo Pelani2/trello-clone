@@ -97,6 +97,7 @@ export default function SignupPage() {
                                 type="text"
                                 value={field.value}
                                 onChange={field.onChange}
+                                variant="primary-input"
                             />
                         )}
                     />
@@ -117,6 +118,7 @@ export default function SignupPage() {
                                 type="email"
                                 value={field.value}
                                 onChange={field.onChange}
+                                variant="primary-input"
                             />
                         )}
                     />
@@ -139,6 +141,7 @@ export default function SignupPage() {
                                     value={field.value}
                                     onChange={field.onChange}
                                     required
+                                    variant="primary-input"
                                 />
 
                                 {errors.password?.type === "passwordLength" && (

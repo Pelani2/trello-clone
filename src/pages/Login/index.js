@@ -98,6 +98,7 @@ export default function Login() {
                                     value={field.value}
                                     onChange={field.onChange}
                                     autoComplete="off"
+                                    variant="primary-input"
                                 />
                             )}
                         />
@@ -122,6 +123,7 @@ export default function Login() {
                                     value={field.value}
                                     onChange={field.onChange}
                                     autoComplete="off"
+                                    variant="primary-input"
                                 />
                             )}
                         />
