@@ -68,13 +68,13 @@ export default function Login() {
                 />
                 <Typography 
                     variant="h1"
-                    className="Typography h1"
+                    className="typography h1"
                 >
                     Login to your account
                 </Typography>
                 <Typography
                     variant="h2"
-                    className="Typography h2"
+                    className="typography h2"
                 >
                     Welcome back! Plese enter your details.
                 </Typography>
@@ -102,7 +102,7 @@ export default function Login() {
                                 />
                             )}
                         />
-                        {errors.email && <Typography className="Typography error-message">
+                        {errors.email && <Typography className="typography error-message">
                                 {errors.email.message}
                             </Typography>}
                     </div>
@@ -128,7 +128,7 @@ export default function Login() {
                             )}
                         />
                         {errors.password && (
-                            <Typography className="Typography error-message"> 
+                            <Typography className="typography error-message"> 
                                 {errors.password.message}
                             </Typography>
                         )}

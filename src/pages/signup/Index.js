@@ -47,7 +47,7 @@ export default function SignupPage() {
 
     const onSubmit = async (formData) => {
         try {
-            const response = await Axios.post("API_ENDPOINT", formData);
+            const response = await Axios.post("NE_ZNAM_STA_OVDE_IDE", formData);
             console.log("API Response: ", response.data);
         } catch (error) {
             console.log("API Error: ", error);
@@ -69,12 +69,12 @@ export default function SignupPage() {
                 />
                 <Typography
                     variant="h1"
-                    className="Typography h1"
+                    className="typography h1"
                 >
                     Create Account
                 </Typography>
                 <Typography 
-                    className="Typography h2"
+                    className="typography h2"
                     variant="h2"
                 >
                     Start your 30-day free trial.
@@ -101,7 +101,7 @@ export default function SignupPage() {
                             />
                         )}
                     />
-                    {errors.name && <Typography className="Typography error-message">
+                    {errors.name && <Typography className="typography error-message">
                             {errors.name.message}
                         </Typography>}
                 </div>
@@ -122,7 +122,7 @@ export default function SignupPage() {
                             />
                         )}
                     />
-                    {errors.email && <Typography className="Typography error-message">
+                    {errors.email && <Typography className="typography error-message">
                             {errors.email.message}
                         </Typography>}
                 </div>
@@ -145,13 +145,13 @@ export default function SignupPage() {
                                 />
 
                                 {errors.password?.type === "passwordLength" && (
-                                    <Typography className="Typography error-message">
+                                    <Typography className="typography error-message">
                                         {errors.password.message}
                                     </Typography>
                                 )}
 
                                 {errors.password?.type === "specialCharacter" && (
-                                    <Typography className="Typography error-message">
+                                    <Typography className="typography error-message">
                                         {errors.password.message}
                                     </Typography>
                                 )}
@@ -175,7 +175,7 @@ export default function SignupPage() {
                     />
                     Sign up with Google
                 </Button>
-                <Typography className="Typography default">
+                <Typography className="typography default">
                     Already have an account?
                     <Button 
                         variant="secondary-button"

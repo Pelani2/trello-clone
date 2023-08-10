@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./typography-styles.scss";
 
-const Typography = ({ className, children, variant }) => {
+const typography = ({ className, children, variant }) => {
     const variantElementMap = {
         default: "p",
         h1: "h1",
@@ -24,10 +24,10 @@ const Typography = ({ className, children, variant }) => {
     );
 };
 
-Typography.propTypes = {
+typography.propTypes = {
     className: PropTypes.string,
     children: PropTypes.string,
     variant: PropTypes.oneOf(["default", "h1", "h2", "h3", "h4", "h5", "h6", "span", "error-message"]),
 };
 
-export default Typography;
+export default typography;

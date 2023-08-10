@@ -11,7 +11,7 @@ const Button = ({ variant, children, className, type, to }) => {
         "forgot-pass-button": "forgot-pass-button",
     };
 
-    const buttonClassName = `Button ${buttonClassMap[variant] || ""} ${className || ""}`;
+    const buttonClassName = `button ${buttonClassMap[variant] || ""} ${className || ""}`;
 
     if (to) {
         return (

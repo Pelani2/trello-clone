@@ -7,7 +7,7 @@ const Input = ({ type, value, onChange, required, id, name, onBlur, autoComplete
         "primary-input": "primary-input",
     };
 
-    const inputClassName = `Input ${inputClassMap[variant] || ""} ${className || ""}`;
+    const inputClassName = `input ${inputClassMap[variant] || ""} ${className || ""}`;
 
     return(
         <input 

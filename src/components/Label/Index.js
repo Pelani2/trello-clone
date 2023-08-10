@@ -8,7 +8,7 @@ const Label = ({ children, htmlFor, className, variant }) => {
         "secondary-label": "secondary-label",
     };
 
-    const labelClassName = `Label ${labelClassMap[variant] || ""} ${className || ""}`;
+    const labelClassName = `label ${labelClassMap[variant] || ""} ${className || ""}`;
 
     return(
         <label
