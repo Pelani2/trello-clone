@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-
 import GoogleLogo from "../../assets/icons/google-logo.png"
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
@@ -11,6 +10,7 @@ import Typography from "../../components/Typography";
 import Input from "../../components/Input";
 import Label from "../../components/Label";
 import Checkbox from "../../components/Checkbox";
+import { Link } from "react-router-dom";
 import "./login-styles.scss";
 
 export default function Login() {
@@ -160,13 +160,13 @@ export default function Login() {
                             </Label>
                         </div>
 
-                        <Button 
-                            variant="forgot-pass-button"
+                        <Link 
+                            className="forgot-pass-button"
                             to="/passwordreset"
                         >
                             
                             Forgot password
-                        </Button>
+                        </Link>
                     </div>
 
                     <Button 
@@ -175,25 +175,25 @@ export default function Login() {
                     >
                         Login
                     </Button>
-                    <Button 
-                        variant="google-button"
+                    <Link 
                         to="https://www.google.com"
+                        className="google-button"
                     >
                         <Logo 
                             src={GoogleLogo}
                             alt="googleIcon"
                         />
                         Sign in with Google
-                    </Button>
+                    </Link>
 
                     <div className="login__signup-box">
                         Dont have an account?
-                        <Button 
-                            variant="secondary-button"
+                        <Link 
+                            className="login__signup-button"
                             to="/signup"
                         >
                             Sign up
-                        </Button>
+                        </Link>
                     </div>
                 </form>
             </div>

@@ -37,6 +37,45 @@
             display: flex;
             align-items: center;
         }
+
+        .forgot-pass-button {
+            color: $primaryColor;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+    
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .login__signup-button {
+        text-decoration: none;
+        color: $primaryColor;
+        margin-left: 5px;
+        font-weight: bold;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .google-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-top: 20px;
+        width: 100%;
+        border: 1px solid #ccc;
+
+        &:hover {
+            background-color: darken(#ccc, 10%);
+        }
     }
 
     .login__form form {

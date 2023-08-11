@@ -36,4 +36,32 @@
         flex-direction: column;
         margin-bottom: 20px;
     }
+
+    .google-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-top: 20px;
+        width: 100%;
+        border: 1px solid #ccc;
+
+        &:hover {
+            background-color: darken(#ccc, 10%);
+        }
+    }
+
+    .signup__login-button {
+        text-decoration: none;
+        color: $primaryColor;
+        margin-left: 5px;
+        font-weight: bold;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
