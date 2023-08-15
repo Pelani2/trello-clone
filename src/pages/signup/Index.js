@@ -35,6 +35,10 @@ export default function SignupPage() {
             }
         )
         .required("Password is required."),
+        confirmPassword: yup
+        .string()
+        .oneOf([yup.ref("password"), null], "Passwords must match")
+        .required("Confirm password is required"),
     });
 
     const {
@@ -48,7 +52,7 @@ export default function SignupPage() {
 
     const onSubmit = async (formData) => {
         try {
-            const response = await Axios.post("NE_ZNAM_STA_OVDE_IDE", formData);
+            const response = await Axios.post("http://localhost:8001/api/signup", formData);
             console.log("API Response: ", response.data);
         } catch (error) {
             console.log("API Error: ", error);
@@ -57,6 +61,7 @@ export default function SignupPage() {
         setValue("name", "");
         setValue("email", "");
         setValue("password", "");
+        setValue("confirmPassword", "");
     };
 
     return(
@@ -106,6 +111,7 @@ export default function SignupPage() {
                             {errors.name.message}
                         </Typography>}
                 </div>
+
                 <div className="signup-form__group">
                     <Label variant="primary-label">
                         Email*
@@ -127,6 +133,7 @@ export default function SignupPage() {
                             {errors.email.message}
                         </Typography>}
                 </div>
+
                 <div className="signup-form__group">
                     <Label variant="primary-label">
                         Password*
@@ -160,6 +167,34 @@ export default function SignupPage() {
                         )}
                     />
                 </div>
+
+                <div className="signup-form__group">
+                    <Label variant="primary-label">
+                        Confirm Password*
+                    </Label>
+                    <Controller 
+                        name="confirmPassword"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                            <React.Fragment>
+                                <Input 
+                                    type="password"
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    required
+                                    variant="primary-input"
+                                />
+                                {errors.confirmPassword && (
+                                    <Typography className="typography error-message">
+                                        {errors.confirmPassword.message}
+                                    </Typography>
+                                )}
+                            </React.Fragment>
+                        )}
+                    />
+                </div>
+
                 <Button 
                     type="submit"
                     variant="primary-button"
