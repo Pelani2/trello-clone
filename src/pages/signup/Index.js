@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -14,9 +14,11 @@ import GoogleLogo from "../../assets/icons/google-logo.png";
 import "./signup-styles.scss";
 
 export default function SignupPage() {
+    const [signupMessage, setSignupMessage] = useState("");
 
     const validationSchema = yup.object().shape({
-        name: yup.string().required("Name is required"),
+        firstName: yup.string().required("First name is required"),
+        lastName: yup.string().required("Last name is required"),
         email: yup.string().email("Invalid email").required("Email is required"),
         password: yup
         .string()
@@ -53,21 +55,24 @@ export default function SignupPage() {
     const onSubmit = async (formData) => {
         try {
             const response = await Axios.post("http://localhost:8001/api/signup", formData);
-            console.log("API Response: ", response.data);
+    
+            if (response.data.success) {
+                // If signup was successful
+                setSignupMessage("Successful sign up!");
+                setValue("confirmPassword", "");
+            } else {
+                // If signup failed, display the error message from the response
+                setSignupMessage(response.data.message || "Email already in use.");
+            }
         } catch (error) {
-            console.log("API Error: ", error);
+            console.log("API Error:", error);
+            setSignupMessage("Email already in use.");
         }
-
-        setValue("name", "");
-        setValue("email", "");
-        setValue("password", "");
-        setValue("confirmPassword", "");
     };
+    
 
     return(
-        <div className="
-            signup__container 
-        ">
+        <div className="signup__container ">
             <div className="signup__title-and-logo">
                 <Logo 
                     alt="logo"
@@ -86,16 +91,22 @@ export default function SignupPage() {
                     Start your 30-day free trial.
                 </Typography>
             </div>
+
+            <Typography className={`typography ${signupMessage.includes("Successful") ? "success-message" : "error-message"}`}>
+                {signupMessage}
+            </Typography>
+
+
             <form 
                 onSubmit={handleSubmit(onSubmit)}
                 className="signup-form"
             >
                 <div className="signup-form__group">
                     <Label variant="primary-label">
-                        Name*
+                        First name*
                     </Label>
                     <Controller 
-                        name="name"
+                        name="firstName"
                         control={control}
                         defaultValue=""
                         render={({ field }) => (
@@ -107,8 +118,30 @@ export default function SignupPage() {
                             />
                         )}
                     />
-                    {errors.name && <Typography className="typography error-message">
-                            {errors.name.message}
+                    {errors.firstName && <Typography className="typography error-message">
+                            {errors.firstName.message}
+                        </Typography>}
+                </div>
+
+                <div className="signup-form__group">
+                    <Label variant="primary-label">
+                        Last name*
+                    </Label>
+                    <Controller 
+                        name="lastName"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                            <Input 
+                                type="text" 
+                                value={field.value}
+                                onChange={field.onChange}
+                                variant="primary-input"
+                            />
+                        )}
+                    />
+                    {errors.lastName && <Typography className="typography error-message">
+                            {errors.lastName.message}
                         </Typography>}
                 </div>
 

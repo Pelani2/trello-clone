@@ -24,4 +24,10 @@
         margin-top: 5px;
         text-align: left;
     }
+
+    &.success-message {
+        color: green;
+        font-size: 16px;
+        margin-top: 10px;
+    }
 }
