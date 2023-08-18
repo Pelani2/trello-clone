@@ -12,7 +12,8 @@ const variantElementMap = {
     h6: "h6",
     span: "span",
     "error-message": "p",
-    "success-message": "p",
+    "signup-error": "p",
+    "signup-success": "p",
 };
 
 const typography = ({ className, children, variant }) => {

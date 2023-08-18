@@ -57,11 +57,9 @@ export default function SignupPage() {
             const response = await Axios.post("http://localhost:8001/api/signup", formData);
     
             if (response.data.success) {
-                // If signup was successful
                 setSignupMessage("Successful sign up!");
                 setValue("confirmPassword", "");
             } else {
-                // If signup failed, display the error message from the response
                 setSignupMessage(response.data.message || "Email already in use.");
             }
         } catch (error) {
@@ -92,9 +90,6 @@ export default function SignupPage() {
                 </Typography>
             </div>
 
-            <Typography className={`typography ${signupMessage.includes("Successful") ? "success-message" : "error-message"}`}>
-                {signupMessage}
-            </Typography>
 
 
             <form 
@@ -227,6 +222,12 @@ export default function SignupPage() {
                         )}
                     />
                 </div>
+
+                {signupMessage && (
+                    <Typography className={`typography ${signupMessage.includes("Successful") ? "signup-success" : "signup-error"}`}>
+                        {signupMessage}
+                    </Typography>
+                )}
 
                 <Button 
                     type="submit"

@@ -25,9 +25,23 @@
         text-align: left;
     }
 
-    &.success-message {
-        color: green;
-        font-size: 16px;
-        margin-top: 10px;
+    &.signup-error {
+        color: #d32f2f;
+        font-weight: bold;
+        background-color: #ffebee;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 1px solid #d32f2f;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    &.signup-success {
+        color: #4CAF50;
+        font-weight: bold;
+        background-color: #ffebee;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 1px solid #4CAF50;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 }
