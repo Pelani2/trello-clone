@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
 import GoogleLogo from "../../assets/icons/google-logo.png"
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
@@ -11,6 +10,7 @@ import Typography from "../../components/Typography";
 import Input from "../../components/Input";
 import Label from "../../components/Label";
 import Checkbox from "../../components/Checkbox";
+import { Link } from "react-router-dom";
 import "./login-styles.scss";
 
 export default function Login() {
@@ -68,13 +68,13 @@ export default function Login() {
                 />
                 <Typography 
                     variant="h1"
-                    className="login__title"
+                    className="typography h1"
                 >
                     Login to your account
                 </Typography>
                 <Typography
-                    variant="h3"
-                    className="login__welcome-message"
+                    variant="h2"
+                    className="typography h2"
                 >
                     Welcome back! Plese enter your details.
                 </Typography>
@@ -83,7 +83,10 @@ export default function Login() {
             <div className="login__form">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="login__input">
-                        <Label htmlFor="email">
+                        <Label 
+                            variant="primary-label"
+                            htmlFor="email"
+                        >
                             Email: 
                         </Label>
                         <Controller 
@@ -95,16 +98,20 @@ export default function Login() {
                                     value={field.value}
                                     onChange={field.onChange}
                                     autoComplete="off"
+                                    variant="primary-input"
                                 />
                             )}
                         />
-                        {errors.email && <Typography className="login__error-message">
+                        {errors.email && <Typography className="typography error-message">
                                 {errors.email.message}
                             </Typography>}
                     </div>
 
                     <div className="login__input">
-                        <Label htmlFor="password">
+                        <Label 
+                            variant="primary-label"
+                            htmlFor="password"
+                        >
                             Password:
                         </Label>
                         <Controller 
@@ -116,11 +123,12 @@ export default function Login() {
                                     value={field.value}
                                     onChange={field.onChange}
                                     autoComplete="off"
+                                    variant="primary-input"
                                 />
                             )}
                         />
                         {errors.password && (
-                            <Typography className="login__error-message"> 
+                            <Typography className="typography error-message"> 
                                 {errors.password.message}
                             </Typography>
                         )}
@@ -144,13 +152,16 @@ export default function Login() {
                                     />
                                 )}
                             />
-                            <Label htmlFor="remember">
+                            <Label 
+                                htmlFor="remember"
+                                variant="secondary-label"
+                            >
                                 Remember for 30 days
                             </Label>
                         </div>
 
                         <Link 
-                            className="login__forgot-link"
+                            className="forgot-pass-button"
                             to="/passwordreset"
                         >
                             
@@ -158,12 +169,15 @@ export default function Login() {
                         </Link>
                     </div>
 
-                    <Button type="submit">
+                    <Button 
+                        type="submit"
+                        variant="primary-button"
+                    >
                         Login
                     </Button>
                     <Link 
-                        className="login__google-button"
                         to="https://www.google.com"
+                        className="google-button"
                     >
                         <Logo 
                             src={GoogleLogo}

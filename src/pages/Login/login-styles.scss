@@ -8,18 +8,6 @@
     min-height: 100vh;
     background-color: $backgroundColor;
 
-    .login__title,
-    .login__welcome-message {
-        font-size: 24px;
-        font-weight: bold;
-        color: $primaryColor;
-        margin-bottom: 10px;
-    }
-    
-    .login__welcome-message {
-        font-size: 18px;
-        color: $secondaryColor;
-    }
 
     .login__title-and-logo > img {
         width: 48px;
@@ -35,21 +23,8 @@
     .login__input {
         display: flex;
         flex-direction: column;
-        align-items: center;
         margin-bottom: 20px;
-    }
-
-    .login__input > Label {
-        text-align: left;
-        width: 100%;
-    }
-
-    .login__error-message {
-        color: red;
-        font-size: 12px;
-        margin-top: 5px;
-        width: 100%;
-        text-align: left;
+        gap: 3px;
     }
 
     .login__remember-forgot-box {
@@ -63,21 +38,44 @@
             align-items: center;
         }
 
-        .login__remember > Label {
+        .forgot-pass-button {
+            color: $primaryColor;
+            text-decoration: none;
             font-size: 15px;
             font-weight: bold;
+    
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 
-    .login__forgot-link {
-        color: $primaryColor;
+    .login__signup-button {
         text-decoration: none;
-        font-size: 15px;
+        color: $primaryColor;
+        margin-left: 5px;
         font-weight: bold;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
-    .login__forgot-link:hover {
-        text-decoration: underline;
+    .google-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-top: 20px;
+        width: 100%;
+        border: 1px solid #ccc;
+
+        &:hover {
+            background-color: darken(#ccc, 10%);
+        }
     }
 
     .login__form form {
@@ -87,48 +85,10 @@
         background-color: #fff;
     }
 
-    .login__form button[type="submit"] {
-        padding: 10px 20px;
-        background-color: $primaryColor;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .login__form button[type="submit"]:hover {
-        background-color: $primaryDarkColor;
-    }
-
-    .login__google-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
-        color: black;
-        border-radius: 5px;
-        padding: 10px 20px;
-        font-size: 16px;
-        margin-top: 20px;
-        width: 100%;
-        border: 1px solid #ccc;
-    }
-
     .login__signup-box {
         font-size: 14px;
         margin-top: 20px;
         text-align: center;
-
-        .login__signup-button {
-            text-decoration: none;
-            color: $primaryColor;
-            margin-left: 5px;
-            font-weight: bold;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
     }
 }
 

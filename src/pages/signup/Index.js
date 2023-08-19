@@ -1,8 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Axios from "axios";
+import { Link } from "react-router-dom";
 import Label from "../../components/Label";
 import Typography from "../../components/Typography";
 import Logo from "../../components/Logo";
@@ -11,13 +12,13 @@ import Button from "../../components/Button";
 import Icon from "../../assets/icons/icon.png";
 import GoogleLogo from "../../assets/icons/google-logo.png";
 import "./signup-styles.scss";
-import "./signup-mobile-styles.scss"
-import "./signup-tablet-styles.scss";
 
 export default function SignupPage() {
+    const [signupMessage, setSignupMessage] = useState("");
 
     const validationSchema = yup.object().shape({
-        name: yup.string().required("Name is required"),
+        firstName: yup.string().required("First name is required"),
+        lastName: yup.string().required("Last name is required"),
         email: yup.string().email("Invalid email").required("Email is required"),
         password: yup
         .string()
@@ -36,6 +37,10 @@ export default function SignupPage() {
             }
         )
         .required("Password is required."),
+        confirmPassword: yup
+        .string()
+        .oneOf([yup.ref("password"), null], "Passwords must match")
+        .required("Confirm password is required"),
     });
 
     const {
@@ -47,45 +52,56 @@ export default function SignupPage() {
         resolver: yupResolver(validationSchema)
     });
 
-    const onSubmit = () => {
-        setValue("name", "");
-        setValue("email", "");
-        setValue("password", "");
+    const onSubmit = async (formData) => {
+        try {
+            const response = await Axios.post("http://localhost:8001/api/signup", formData);
+    
+            if (response.data.success) {
+                setSignupMessage("Successful sign up!");
+                setValue("confirmPassword", "");
+            } else {
+                setSignupMessage(response.data.message || "Email already in use.");
+            }
+        } catch (error) {
+            console.log("API Error:", error);
+            setSignupMessage("Email already in use.");
+        }
     };
+    
 
     return(
-        <div className="signup__container">
+        <div className="signup__container ">
             <div className="signup__title-and-logo">
                 <Logo 
                     alt="logo"
                     src={Icon}
                 />
-                <Typography 
+                <Typography
                     variant="h1"
-                    className="signup__title"
+                    className="typography h1"
                 >
                     Create Account
                 </Typography>
                 <Typography 
-                    className="
-                        signup__free-trial
-                        signup__mobile-font14px
-                    "
+                    className="typography h2"
                     variant="h2"
                 >
                     Start your 30-day free trial.
                 </Typography>
             </div>
+
+
+
             <form 
                 onSubmit={handleSubmit(onSubmit)}
                 className="signup-form"
             >
                 <div className="signup-form__group">
-                    <Label className="signup-form__label">
-                        Name*
+                    <Label variant="primary-label">
+                        First name*
                     </Label>
                     <Controller 
-                        name="name"
+                        name="firstName"
                         control={control}
                         defaultValue=""
                         render={({ field }) => (
@@ -93,15 +109,39 @@ export default function SignupPage() {
                                 type="text"
                                 value={field.value}
                                 onChange={field.onChange}
+                                variant="primary-input"
                             />
                         )}
                     />
-                    {errors.name && <Typography className="error-message">
-                            {errors.name.message}
+                    {errors.firstName && <Typography className="typography error-message">
+                            {errors.firstName.message}
                         </Typography>}
                 </div>
+
                 <div className="signup-form__group">
-                    <Label className="signup-form__label">
+                    <Label variant="primary-label">
+                        Last name*
+                    </Label>
+                    <Controller 
+                        name="lastName"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                            <Input 
+                                type="text" 
+                                value={field.value}
+                                onChange={field.onChange}
+                                variant="primary-input"
+                            />
+                        )}
+                    />
+                    {errors.lastName && <Typography className="typography error-message">
+                            {errors.lastName.message}
+                        </Typography>}
+                </div>
+
+                <div className="signup-form__group">
+                    <Label variant="primary-label">
                         Email*
                     </Label>
                     <Controller 
@@ -113,15 +153,17 @@ export default function SignupPage() {
                                 type="email"
                                 value={field.value}
                                 onChange={field.onChange}
+                                variant="primary-input"
                             />
                         )}
                     />
-                    {errors.email && <Typography className="error-message">
+                    {errors.email && <Typography className="typography error-message">
                             {errors.email.message}
                         </Typography>}
                 </div>
+
                 <div className="signup-form__group">
-                    <Label className="signup-form__label">
+                    <Label variant="primary-label">
                         Password*
                     </Label>
                     <Controller 
@@ -135,16 +177,17 @@ export default function SignupPage() {
                                     value={field.value}
                                     onChange={field.onChange}
                                     required
+                                    variant="primary-input"
                                 />
 
                                 {errors.password?.type === "passwordLength" && (
-                                    <Typography className="error-message">
+                                    <Typography className="typography error-message">
                                         {errors.password.message}
                                     </Typography>
                                 )}
 
                                 {errors.password?.type === "specialCharacter" && (
-                                    <Typography className="error-message">
+                                    <Typography className="typography error-message">
                                         {errors.password.message}
                                     </Typography>
                                 )}
@@ -152,14 +195,48 @@ export default function SignupPage() {
                         )}
                     />
                 </div>
-                <Button type="submit">
+
+                <div className="signup-form__group">
+                    <Label variant="primary-label">
+                        Confirm Password*
+                    </Label>
+                    <Controller 
+                        name="confirmPassword"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                            <React.Fragment>
+                                <Input 
+                                    type="password"
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    required
+                                    variant="primary-input"
+                                />
+                                {errors.confirmPassword && (
+                                    <Typography className="typography error-message">
+                                        {errors.confirmPassword.message}
+                                    </Typography>
+                                )}
+                            </React.Fragment>
+                        )}
+                    />
+                </div>
+
+                {signupMessage && (
+                    <Typography className={`typography ${signupMessage.includes("Successful") ? "signup-success" : "signup-error"}`}>
+                        {signupMessage}
+                    </Typography>
+                )}
+
+                <Button 
+                    type="submit"
+                    variant="primary-button"
+                >
                     Submit
                 </Button>
                 <Link
-                    className="
-                        signup__google-button
-                        signup__mobile-font14px
-                    "
+                    className="google-button"
                     to="https://www.google.com/"
                 >
                     <Logo
@@ -168,12 +245,7 @@ export default function SignupPage() {
                     />
                     Sign up with Google
                 </Link>
-                <Typography 
-                    className="
-                        signup__login-box
-                        signup__mobile-font12px
-                    "
-                >
+                <Typography className="typography default">
                     Already have an account?
                     <Link 
                         className="signup__login-button"
